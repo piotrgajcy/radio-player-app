@@ -1,0 +1,8 @@
+.btn {
+  width: 2rem;
+  height: 2rem;
+  background-color: #df4;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 1rem;
+}
