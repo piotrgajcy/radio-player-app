@@ -93,7 +93,7 @@ var SelectStation = function () {
 
     this.urls = _streamUrls2.default;
     this.audioSrc = document.getElementById('audioSrc');
-    this.radioPrograms = document.querySelectorAll('.btn');
+    this.radioPrograms = document.querySelectorAll('.program-btn');
     this.events();
   }
 
@@ -114,8 +114,14 @@ var SelectStation = function () {
         radioProgram.addEventListener('click', function (e) {
           e.preventDefault();
           _this.programName = e.target.getAttribute('data-program');
-          _this.setProgramSrc(_this.programName);
-          _this.playRadio();
+          _this.currentProgramName = _this.audioSrc.getAttribute('data-current-program');
+          if (_this.programName === _this.currentProgramName) {
+            _this.playPauseRadio();
+          } else {
+            _this.setProgramSrc(_this.programName);
+            _this.isPlaying = false;
+            _this.playPauseRadio();
+          }
         });
       });
     }
@@ -123,11 +129,28 @@ var SelectStation = function () {
     key: 'setProgramSrc',
     value: function setProgramSrc(programName) {
       this.audioSrc.setAttribute('src', this.urls[programName]);
+      this.audioSrc.setAttribute('data-current-program', programName);
+    }
+  }, {
+    key: 'playPauseRadio',
+    value: function playPauseRadio() {
+      if (this.isPlaying) {
+        this.isPlaying = false;
+        this.pauseRadio();
+      } else {
+        this.isPlaying = true;
+        this.playRadio();
+      }
     }
   }, {
     key: 'playRadio',
     value: function playRadio() {
       this.audioSrc.play();
+    }
+  }, {
+    key: 'pauseRadio',
+    value: function pauseRadio() {
+      this.audioSrc.pause();
     }
   }]);
 
