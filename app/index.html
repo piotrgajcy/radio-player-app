@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta http-equiv="Cache-control" content="no-cache" />
   
   <title>Radio Player</title>
   <meta name="description" content="Web Audio Api radio player.">
@@ -21,11 +22,16 @@
   <!--endbuild-->
 </head>
 <body>
-  <audio data-current-program="" source id="audioSrc" src="" type="audio/mpeg" controls></audio>
-  <div data-program="program1" class="program-btn">1</div>
-  <div data-program="program2" class="program-btn">2</div>
-  <div data-program="program3" class="program-btn">3</div>
-  <div data-program="program4" class="program-btn">4</div>
+  <div class="radio-player">
+    <audio data-current-program="" id="audioSrc" src="" type="audio/mpeg" preload="none" controls></audio>
+    <div class="radio-player__programmes">
+      <div data-program="program1" class="program-btn">1</div>
+      <div data-program="program2" class="program-btn">2</div>
+      <div data-program="program3" class="program-btn">3</div>
+      <div data-program="program4" class="program-btn">4</div>
+    </div>
+    <input type="range" name="volume" class="radio-player__volume-control" id="volume-control" min="0" max="1" value="1" step="0.05">    
+  </div>
 
   <!--build:js assets/scripts/App.js-->
   <script src="/temp/scripts/App.js"></script>

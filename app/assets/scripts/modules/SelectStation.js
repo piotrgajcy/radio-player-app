@@ -21,12 +21,12 @@ class SelectStation {
         e.preventDefault();
         this.programName = e.target.getAttribute('data-program');
         this.currentProgramName = this.audioSrc.getAttribute('data-current-program');
+        this.setProgramSrc(this.programName);
         if (this.programName === this.currentProgramName) {
-          this.playPauseRadio();
+          this.playStopRadio();
         } else {
-          this.setProgramSrc(this.programName);
           this.isPlaying = false;
-          this.playPauseRadio();
+          this.playStopRadio();
         }
       });
     });
@@ -38,10 +38,10 @@ class SelectStation {
   }
 
 
-  playPauseRadio() {
+  playStopRadio() {
     if (this.isPlaying) {
       this.isPlaying = false;
-      this.pauseRadio();
+      this.stopRadio();
     } else {
       this.isPlaying = true;
       this.playRadio();
@@ -52,8 +52,10 @@ class SelectStation {
     this.audioSrc.play();
   }
 
-  pauseRadio() {
+  stopRadio() {
     this.audioSrc.pause();
+    // prevent downloading stream from source when radio is stoped.
+    this.audioSrc.setAttribute('src', '');
   }
 }
 

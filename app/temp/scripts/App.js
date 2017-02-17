@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -79,7 +79,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _streamUrls = __webpack_require__(2);
+var _streamUrls = __webpack_require__(3);
 
 var _streamUrls2 = _interopRequireDefault(_streamUrls);
 
@@ -115,12 +115,12 @@ var SelectStation = function () {
           e.preventDefault();
           _this.programName = e.target.getAttribute('data-program');
           _this.currentProgramName = _this.audioSrc.getAttribute('data-current-program');
+          _this.setProgramSrc(_this.programName);
           if (_this.programName === _this.currentProgramName) {
-            _this.playPauseRadio();
+            _this.playStopRadio();
           } else {
-            _this.setProgramSrc(_this.programName);
             _this.isPlaying = false;
-            _this.playPauseRadio();
+            _this.playStopRadio();
           }
         });
       });
@@ -132,11 +132,11 @@ var SelectStation = function () {
       this.audioSrc.setAttribute('data-current-program', programName);
     }
   }, {
-    key: 'playPauseRadio',
-    value: function playPauseRadio() {
+    key: 'playStopRadio',
+    value: function playStopRadio() {
       if (this.isPlaying) {
         this.isPlaying = false;
-        this.pauseRadio();
+        this.stopRadio();
       } else {
         this.isPlaying = true;
         this.playRadio();
@@ -148,9 +148,11 @@ var SelectStation = function () {
       this.audioSrc.play();
     }
   }, {
-    key: 'pauseRadio',
-    value: function pauseRadio() {
+    key: 'stopRadio',
+    value: function stopRadio() {
       this.audioSrc.pause();
+      // prevent downloading stream from source when radio is stoped.
+      this.audioSrc.setAttribute('src', '');
     }
   }]);
 
@@ -160,8 +162,50 @@ var SelectStation = function () {
 exports.default = SelectStation;
 
 /***/ }),
-/* 1 */,
-/* 2 */
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var VolumeControl = function () {
+  function VolumeControl() {
+    _classCallCheck(this, VolumeControl);
+
+    this.volumeRange = document.getElementById('volume-control');
+    this.volumeRangeEvents();
+  }
+
+  _createClass(VolumeControl, [{
+    key: 'volumeRangeEvents',
+    value: function volumeRangeEvents() {
+      this.volumeRange.addEventListener('change', this.rangeUpdate);
+      this.volumeRange.addEventListener('mousemove', this.rangeUpdate);
+    }
+  }, {
+    key: 'rangeUpdate',
+    value: function rangeUpdate() {
+      this.audioSrc = document.getElementById('audioSrc');
+      this.audioSrc[this.name] = this.value;
+    }
+  }]);
+
+  return VolumeControl;
+}();
+
+exports.default = VolumeControl;
+
+/***/ }),
+/* 2 */,
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -180,7 +224,7 @@ var streamUrls = {
 exports.default = streamUrls;
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -190,9 +234,14 @@ var _SelectStation = __webpack_require__(0);
 
 var _SelectStation2 = _interopRequireDefault(_SelectStation);
 
+var _VolumeControl = __webpack_require__(1);
+
+var _VolumeControl2 = _interopRequireDefault(_VolumeControl);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var selectStation = new _SelectStation2.default();
+var volumeControl = new _VolumeControl2.default();
 
 /***/ })
 /******/ ]);
