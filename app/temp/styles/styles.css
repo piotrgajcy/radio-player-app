@@ -461,8 +461,8 @@ template {
 }
 
 body {
-  font-family:  'Lato', sans-serif;
-  color: #000;
+  font-family:  'Hammersmith One', sans-serif;
+  color: #fff;
   font-weight: 400;
 }
 
@@ -490,11 +490,91 @@ b {
   box-sizing: border-box;
 }
 
+.radio-player {
+  margin: 0 auto;
+  max-width: 24rem;
+}
+
+.radio-player__programmes {
+  background-color: #252525;
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.29);/*background: linear-gradient(#f68e1e 20%, #009e61 50%, #009e61 50%, #d80372 51%, #d80372 68% , #fff402 80%, #fff402 100%); */
+}
+
 .program-btn {
-  width: 2rem;
-  height: 2rem;
-  background-color: #df4;
+  width: 100%;
+  height: 3.5rem;
   cursor: pointer;
-  display: inline-block;
-  margin-right: 1rem;
+  padding-left: 3rem;
+  position: relative;
+  border-bottom: 1px solid #402030;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+
+}
+
+.program-btn:hover, .program-btn:focus {
+  background-color: rgba(255, 255, 255, .3);
+}
+
+.program-btn::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: .5rem solid transparent;
+  border-bottom: .5rem solid transparent;
+  border-left: .5rem solid transparent;
+  position: absolute;
+  right: 2rem;
+  top: 30%;
+}
+
+.program-btn:hover::before, .program-btn:focus::before {
+  border-left: .75rem solid #fff;
+}
+
+.program-btn:last-child {
+  border-bottom: none;
+}
+
+.program-btn__title {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.program-btn--current {
+  color: #252525;
+  background-color: rgba(255, 255, 255, .95);
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+.program-btn--current::before {
+  content: '';
+  width: .25rem;
+  height: 1rem;
+  background-color: #252525;
+  position: absolute;
+  right: 2.5rem;
+  top: 30%;
+  border: none;
+}
+
+.program-btn--current::after {
+  content: '';
+  width: .25rem;
+  height: 1rem;
+  background-color: #252525;
+  position: absolute;
+  right: 2rem;
+  top: 30%;
+}
+
+.program-btn--current:hover {
+  background-color: #fff;
+}
+
+.program-btn--current:hover::before {
+  border: none;
 }

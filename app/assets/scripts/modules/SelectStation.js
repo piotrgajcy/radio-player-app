@@ -18,8 +18,8 @@ class SelectStation {
     // from streamUrls.js equal to data-program attribute.
     Array.from(this.radioPrograms).forEach((radioProgram) => {
       radioProgram.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.programName = e.target.getAttribute('data-program');
+        this.program = e.currentTarget;
+        this.programName = this.program.getAttribute('data-program');
         this.currentProgramName = this.audioSrc.getAttribute('data-current-program');
         this.setProgramSrc(this.programName);
         if (this.programName === this.currentProgramName) {
@@ -28,7 +28,7 @@ class SelectStation {
           this.isPlaying = false;
           this.playStopRadio();
         }
-      });
+      }, false);
     });
   }
 
@@ -42,9 +42,12 @@ class SelectStation {
     if (this.isPlaying) {
       this.isPlaying = false;
       this.stopRadio();
+      this.removeCurrentClass();
     } else {
       this.isPlaying = true;
       this.playRadio();
+      this.removeCurrentClass();
+      this.addCurrentClass();
     }
   }
 
@@ -56,6 +59,17 @@ class SelectStation {
     this.audioSrc.pause();
     // prevent downloading stream from source when radio is stoped.
     this.audioSrc.setAttribute('src', '');
+  }
+
+  removeCurrentClass() {
+    this.currentProgramClass = document.getElementsByClassName('program-btn--current');
+    while (this.currentProgramClass.length) {
+      this.currentProgramClass[0].classList.remove('program-btn--current');
+    }
+  }
+
+  addCurrentClass() {
+    this.program.className += ' program-btn--current';
   }
 }
 

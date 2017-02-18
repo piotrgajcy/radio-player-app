@@ -1,0 +1,9 @@
+.radio-player {
+  margin: 0 auto;
+  max-width: 24rem;
+  &__programmes {
+    background-color: #252525;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.29);
+    /*background: linear-gradient(#f68e1e 20%, #009e61 50%, #009e61 50%, #d80372 51%, #d80372 68% , #fff402 80%, #fff402 100%); */
+  }
+}
