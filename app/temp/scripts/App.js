@@ -93,6 +93,7 @@ var SelectStation = function () {
 
     this.urls = _streamUrls2.default;
     this.audioSrc = document.getElementById('audioSrc');
+    this.programScreen = document.getElementById('radio-player__program-screen');
     this.radioPrograms = document.querySelectorAll('.program-btn');
     this.events();
   }
@@ -116,6 +117,7 @@ var SelectStation = function () {
           _this.programName = _this.program.getAttribute('data-program');
           _this.currentProgramName = _this.audioSrc.getAttribute('data-current-program');
           _this.setProgramSrc(_this.programName);
+          _this.showOnScreen(_this.programName, _this.currentProgramName);
           if (_this.programName === _this.currentProgramName) {
             _this.playStopRadio();
           } else {
@@ -169,6 +171,16 @@ var SelectStation = function () {
     key: 'addCurrentClass',
     value: function addCurrentClass() {
       this.program.className += ' program-btn--current';
+    }
+  }, {
+    key: 'showOnScreen',
+    value: function showOnScreen(programName, currentProgramName) {
+      if (programName === currentProgramName) {
+        this.programScreen.classList.toggle('radio-player__program-screen--' + programName);
+      } else {
+        this.programScreen.classList.remove('radio-player__program-screen--' + currentProgramName);
+        this.programScreen.classList.add('radio-player__program-screen--' + programName);
+      }
     }
   }]);
 

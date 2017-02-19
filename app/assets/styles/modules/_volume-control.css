@@ -16,8 +16,8 @@ input[type="range"].volume-control__volume{
   -webkit-appearance: none;
   background: transparent;
   position: absolute;
-  top: 40%;
-  right: 0;
+  top: 4rem;
+  right: -.5rem;
   transform: rotate(270deg);
   width: 5rem;
 }
@@ -41,7 +41,6 @@ input[type=range]::-moz-range-track {
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  border: 1px solid #000000;
   height: 1.25rem;
   width: 1.25rem;
   border-radius: 1rem;
@@ -52,7 +51,6 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 input[type=range]::-moz-range-thumb {
-  border: 1px solid #000000;
   height: 1.25rem;
   width: 1.25rem;
   border-radius: 1rem;
@@ -84,8 +82,8 @@ input[type="range"]:focus {
   box-shadow: inset 4px 0;
   margin: 4px 16px 4px 7px;
   position: absolute;
-  right: 1rem;
-  bottom: .5rem;
+  right: 2.5rem;
+  top: 1.15rem;
   transition: color .3s ease-out;
 
   &--dark {

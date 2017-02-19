@@ -4,6 +4,7 @@ class SelectStation {
   constructor() {
     this.urls = streamUrls;
     this.audioSrc = document.getElementById('audioSrc');
+    this.programScreen = document.getElementById('radio-player__program-screen');
     this.radioPrograms = document.querySelectorAll('.program-btn');
     this.events();
   }
@@ -22,6 +23,7 @@ class SelectStation {
         this.programName = this.program.getAttribute('data-program');
         this.currentProgramName = this.audioSrc.getAttribute('data-current-program');
         this.setProgramSrc(this.programName);
+        this.showOnScreen(this.programName, this.currentProgramName);
         if (this.programName === this.currentProgramName) {
           this.playStopRadio();
         } else {
@@ -70,6 +72,15 @@ class SelectStation {
 
   addCurrentClass() {
     this.program.className += ' program-btn--current';
+  }
+
+  showOnScreen(programName, currentProgramName) {
+    if (programName === currentProgramName) {
+      this.programScreen.classList.toggle(`radio-player__program-screen--${programName}`);
+    } else {
+      this.programScreen.classList.remove(`radio-player__program-screen--${currentProgramName}`);
+      this.programScreen.classList.add(`radio-player__program-screen--${programName}`);
+    }
   }
 }
 
