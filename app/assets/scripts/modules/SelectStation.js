@@ -1,4 +1,4 @@
-import streamUrls from './streamUrls';
+// import streamUrls from './streamUrls';
 
 class SelectStation {
   constructor() {
@@ -6,6 +6,7 @@ class SelectStation {
     this.audioSrc = document.getElementById('audioSrc');
     this.programScreen = document.getElementById('radio-player__program-screen');
     this.radioPrograms = document.querySelectorAll('.program-btn');
+    this.soundSpectrum = document.getElementById('sound-spectrum');
     this.events();
   }
 
@@ -45,11 +46,13 @@ class SelectStation {
       this.isPlaying = false;
       this.stopRadio();
       this.removeCurrentClass();
+      this.removeSpectrumAnimation();
     } else {
       this.isPlaying = true;
       this.playRadio();
       this.removeCurrentClass();
       this.addCurrentClass();
+      this.addSpectrumAnimation();
     }
   }
 
@@ -72,6 +75,14 @@ class SelectStation {
 
   addCurrentClass() {
     this.program.className += ' program-btn--current';
+  }
+
+  removeSpectrumAnimation() {
+    this.soundSpectrum.classList.remove('icon--visible');
+  }
+
+  addSpectrumAnimation() {
+    this.soundSpectrum.classList.add('icon--visible');
   }
 
   showOnScreen(programName, currentProgramName) {

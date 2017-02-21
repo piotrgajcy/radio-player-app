@@ -1,31 +1,42 @@
 .radio-player {
-  margin: 2rem auto 0;
-  max-width: 24rem;
+  margin: 0 auto;
+  max-width: 100%;
   background-color: #252525;
   box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.29);
+  font-size: 1.5rem;
+
+  @mixin atMedium {
+    margin: 2rem auto 0;
+    max-width: 24rem;
+    font-size: 1rem;
+  }
   
   &__program-screen {
     position: relative;
-    height: 10rem;
+    height: 30vh;
     width: 100%;
     transition: background-color .6s ease-in-out;
+
+    @mixin atMedium {
+      height: 8rem;
+    }
   }
 
   &__program-screen--program1 {
     background: #f68e1e url('../../assets/images/logo1.png') no-repeat;
-    background-position: 17% 15%;
+    background-position: 20% 28%;
     background-size: 30%;
   }
 
   &__program-screen--program2 {
     background: #009e61 url('../../assets/images/logo2.png') no-repeat;
-    background-position: 17% 15%;
+    background-position: 20% 28%;
     background-size: 30%;
   }
 
   &__program-screen--program3 {
     background: #d80372 url('../../assets/images/logo3.png') no-repeat;
-    background-position: 17% 15%;
+    background-position: 20% 28%;
     background-size: 30%;
   }
 

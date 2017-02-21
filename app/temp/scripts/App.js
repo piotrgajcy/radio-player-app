@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -79,7 +79,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _streamUrls = __webpack_require__(3);
+var _streamUrls = __webpack_require__(2);
 
 var _streamUrls2 = _interopRequireDefault(_streamUrls);
 
@@ -95,6 +95,7 @@ var SelectStation = function () {
     this.audioSrc = document.getElementById('audioSrc');
     this.programScreen = document.getElementById('radio-player__program-screen');
     this.radioPrograms = document.querySelectorAll('.program-btn');
+    this.soundSpectrum = document.getElementById('sound-spectrum');
     this.events();
   }
 
@@ -140,11 +141,13 @@ var SelectStation = function () {
         this.isPlaying = false;
         this.stopRadio();
         this.removeCurrentClass();
+        this.removeSpectrumAnimation();
       } else {
         this.isPlaying = true;
         this.playRadio();
         this.removeCurrentClass();
         this.addCurrentClass();
+        this.addSpectrumAnimation();
       }
     }
   }, {
@@ -171,6 +174,16 @@ var SelectStation = function () {
     key: 'addCurrentClass',
     value: function addCurrentClass() {
       this.program.className += ' program-btn--current';
+    }
+  }, {
+    key: 'removeSpectrumAnimation',
+    value: function removeSpectrumAnimation() {
+      this.soundSpectrum.classList.remove('icon--visible');
+    }
+  }, {
+    key: 'addSpectrumAnimation',
+    value: function addSpectrumAnimation() {
+      this.soundSpectrum.classList.add('icon--visible');
     }
   }, {
     key: 'showOnScreen',
@@ -245,8 +258,7 @@ var VolumeControl = function () {
 exports.default = VolumeControl;
 
 /***/ }),
-/* 2 */,
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -265,7 +277,7 @@ var streamUrls = {
 exports.default = streamUrls;
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
