@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <title>Radio Player</title>
+  <meta name="description" content="Web Audio Api radio player.">
+  <meta name="author" content="Piotr Gajcy">
+
+  <link href="https://fonts.googleapis.com/css?family=Hammersmith+One" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/styles/styles-e294f6df8c.css"/>
+</head>
+<body>
+  <div class="radio-player">
+    <audio data-current-program="" id="audioSrc" src="" type="audio/mpeg" preload="none" ></audio>
+    <div class="radio-player__program-screen" id="radio-player__program-screen">
+      <div class="volume-control">
+        <input type="range" name="volume" class="volume-control__volume" id="volume-control__volume" min="0" max="1" value=".85" step="0.05">
+        <div class="volume-control__speaker" id="volume-control__speaker"></div>
+      </div>
+      <div class="icon audio" id="sound-spectrum">
+        <i></i>
+        <i></i>
+      </div>
+    </div>
+    <div class="radio-player__programmes">
+      <div data-program="program1" class="program-btn"><span class="program-btn__title">Jedynka</span></div>
+      <div data-program="program2" class="program-btn"><span class="program-btn__title">Dwójka</span></div>
+      <div data-program="program3" class="program-btn"><span class="program-btn__title">Trójka</span></div>
+      <div data-program="program4" class="program-btn"><span class="program-btn__title">Czwórka</span></div>
+    </div>
+  </div>
+
+  <script src="assets/scripts/App-331f9f6473.js"></script>
+</body>
+</html>

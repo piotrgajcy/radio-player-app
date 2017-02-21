@@ -1,4 +1,4 @@
-// import streamUrls from './streamUrls';
+import streamUrls from './streamUrls';
 
 class SelectStation {
   constructor() {
